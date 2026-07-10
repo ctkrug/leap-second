@@ -88,6 +88,36 @@ describe('render — clock panels', () => {
   });
 });
 
+describe('render — signature annotation sweep', () => {
+  it('is inactive through most of the minute and activates at the :59 mark', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:30Z'));
+    const annotation = root.querySelector('[data-annotation]');
+    expect(annotation.classList.contains('annotation--active')).toBe(false);
+
+    render(root, new Date('2026-07-10T00:00:59Z'));
+    expect(annotation.classList.contains('annotation--active')).toBe(true);
+  });
+
+  it('retracts again on the following tick', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:59Z'));
+    render(root, new Date('2026-07-10T00:01:00Z'));
+
+    expect(root.querySelector('[data-annotation]').classList.contains('annotation--active')).toBe(
+      false
+    );
+  });
+
+  it('shows the exact TAI/GPS offsets in the callout label', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:59Z'));
+
+    expect(root.querySelector('.annotation__label').textContent).toContain('37s');
+    expect(root.querySelector('.annotation__label').textContent).toContain('18s');
+  });
+});
+
 describe('render — explainer', () => {
   it('has a real, reachable heading and mentions the 2016 leap second and 1980 GPS epoch', () => {
     const root = freshRoot();
