@@ -346,9 +346,15 @@ h1 {
 @media (min-width: 1024px) {
   .clocks-grid {
     grid-template-columns: repeat(3, 1fr);
+    min-height: 62vh;
+  }
+
+  .clock-panel {
+    justify-content: center;
   }
 
   .clock-panel__dial {
     max-width: none;
+    width: 60%;
   }
 }
