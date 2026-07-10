@@ -221,6 +221,7 @@ function updateCountdown(root, now) {
   const remaining = timeRemaining(now, DECISION_INSTANT);
   const valueEl = root.querySelector('[data-field="countdown-value"]');
   const decidedEl = root.querySelector('[data-field="decided"]');
+  if (!valueEl || !decidedEl) return;
 
   if (remaining.isPast) {
     valueEl.hidden = true;
@@ -255,8 +256,10 @@ function update(root, now) {
     const panel = root.querySelector(`[data-clock="${clock.key}"]`);
     if (!panel) continue;
     const date = clocks[clock.key];
-    panel.querySelector('[data-field="readout"]').textContent = formatReadout(date);
-    panel.querySelector('[data-field="date"]').textContent = formatDatePart(date);
+    const readoutEl = panel.querySelector('[data-field="readout"]');
+    const dateEl = panel.querySelector('[data-field="date"]');
+    if (readoutEl) readoutEl.textContent = formatReadout(date);
+    if (dateEl) dateEl.textContent = formatDatePart(date);
     updateDial(panel, date);
   }
 
