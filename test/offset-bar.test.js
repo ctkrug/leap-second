@@ -25,4 +25,8 @@ describe('offsetBarWidthPercent', () => {
   it('returns 0 rather than dividing by zero when max is 0', () => {
     expect(offsetBarWidthPercent(10, 0)).toBe(0);
   });
+
+  it('returns 0 rather than a flipped-sign ratio when max is negative', () => {
+    expect(offsetBarWidthPercent(10, -37)).toBe(0);
+  });
 });
