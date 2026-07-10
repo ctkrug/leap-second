@@ -87,13 +87,13 @@ criteria — no "works well" vibes checks.
     reverse-proxy prefix, or opening `site/index.html` directly) shows no absolute-path 404s
     in the console.
 
-- [ ] **4.2 — Launch-ready README**
+- [x] **4.2 — Launch-ready README**
   - The README's live-demo link points at the real deployed URL (no longer marked "coming at
     ship time").
   - The GitHub repo has an accurate description and relevant topics set.
 
-- [ ] **4.3 — Final design self-review**
+- [x] **4.3 — Final design self-review**
   - Every item in `docs/DESIGN.md`'s D3 checklist has been walked through end-to-end on the
     shipped build, not just in dev.
-  - The favicon and wordmark render correctly in a browser tab and page header — no default
+  - The favicon and wordmark render correctly in a browser tab and page header, no default
     globe icon.
