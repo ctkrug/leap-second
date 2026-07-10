@@ -38,6 +38,19 @@ describe('timeRemaining', () => {
     const now = new Date('2026-07-10T00:00:00Z');
     expect(timeRemaining(now).totalMs).toBe(DECISION_INSTANT.getTime() - now.getTime());
   });
+
+  it('crosses the exact leap-second boundary instant without NaN or a throw', () => {
+    const atBoundary = timeRemaining(new Date('2026-12-31T23:59:59Z'), DECISION_INSTANT);
+    const oneSecondLater = timeRemaining(new Date('2027-01-01T00:00:00Z'), DECISION_INSTANT);
+
+    for (const result of [atBoundary, oneSecondLater]) {
+      expect(result.isPast).toBe(true);
+      expect(Number.isNaN(result.days)).toBe(false);
+      expect(Number.isNaN(result.hours)).toBe(false);
+      expect(Number.isNaN(result.minutes)).toBe(false);
+      expect(Number.isNaN(result.seconds)).toBe(false);
+    }
+  });
 });
 
 describe('ODDS', () => {
