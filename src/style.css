@@ -315,6 +315,13 @@ body {
   margin-top: 0;
 }
 
+.countdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
 .countdown .clock-value {
   font-size: 2.25rem;
   margin: var(--space-2) 0;
@@ -323,6 +330,12 @@ body {
 .countdown__decided {
   color: var(--accent);
   font-weight: 600;
+}
+
+.countdown__boundary {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: var(--space-2) 0 0;
 }
 
 .odds__asof {
