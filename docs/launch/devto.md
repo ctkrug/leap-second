@@ -1,5 +1,5 @@
 ---
-title: "Skew: watching UTC, TAI and GPS disagree, and counting down to the 2026 leap second"
+title: 'Skew: watching UTC, TAI and GPS disagree, and counting down to the 2026 leap second'
 published: false
 tags: javascript, webdev, svg, testing
 ---
