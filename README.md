@@ -54,9 +54,10 @@ is that the time math is small and legible enough to read directly.
 
 ```bash
 npm install
-npm run dev       # local dev server with hot reload
-npm test          # run the test suite
-npm run build     # production build into dist/
+npm run dev        # local dev server with hot reload
+npm test           # run the test suite
+npm run coverage   # run the test suite with a coverage report
+npm run build      # production build into dist/
 ```
 
 ## Project layout
