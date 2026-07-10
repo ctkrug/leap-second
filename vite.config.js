@@ -9,6 +9,5 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    environmentMatchGlobs: [['test/render.test.js', 'happy-dom']],
   },
 });
