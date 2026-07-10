@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import fc from 'fast-check';
 import { handAngles } from '../src/dial.js';
 
 describe('handAngles', () => {
@@ -33,5 +34,34 @@ describe('handAngles', () => {
   it('advances the hour hand fractionally as minutes progress', () => {
     const { hourDeg } = handAngles(new Date('2026-07-10T01:30:00Z'));
     expect(hourDeg).toBeCloseTo(45, 5);
+  });
+});
+
+describe('handAngles — properties', () => {
+  const anyDate = fc.date({
+    min: new Date('1970-01-01T00:00:00Z'),
+    max: new Date('2200-01-01T00:00:00Z'),
+    noInvalidDate: true,
+  });
+
+  it('keeps every hand angle within a full turn, [0, 360)', () => {
+    fc.assert(
+      fc.property(anyDate, (date) => {
+        const { hourDeg, minuteDeg, secondDeg } = handAngles(date);
+        for (const deg of [hourDeg, minuteDeg, secondDeg]) {
+          expect(deg).toBeGreaterThanOrEqual(0);
+          expect(deg).toBeLessThan(360);
+        }
+      }),
+    );
+  });
+
+  it('derives the second hand exactly as 6 degrees per second', () => {
+    fc.assert(
+      fc.property(anyDate, (date) => {
+        const { secondDeg } = handAngles(date);
+        expect(secondDeg).toBeCloseTo(date.getUTCSeconds() * 6, 10);
+      }),
+    );
   });
 });
