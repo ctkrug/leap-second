@@ -56,11 +56,11 @@ criteria — no "works well" vibes checks.
 
 ## Epic 3 — Craft, accessibility & responsiveness
 
-- [ ] **3.1 — Responsive layout at 390 / 768 / 1440**
+- [x] **3.1 — Responsive layout at 390 / 768 / 1440**
   - No horizontal scrollbar appears at any of the three widths.
   - Clock panels stack vertically below 768px and sit in a row at 1024px and above.
 
-- [ ] **3.2 — Interaction states, reduced motion, and the signature annotation sweep**
+- [x] **3.2 — Interaction states, reduced motion, and the signature annotation sweep**
   - Every interactive control has a visible `:focus-visible` outline distinct from the
     browser default.
   - At the `:59`-second mark, a dashed leader-line callout sweeps in on the UTC dial showing
@@ -68,7 +68,7 @@ criteria — no "works well" vibes checks.
     `prefers-reduced-motion` set, it's replaced by an always-visible static label instead of
     animating.
 
-- [ ] **3.3 — Test coverage for time-math edge cases**
+- [x] **3.3 — Test coverage for time-math edge cases**
   - Unit tests cover the exact leap-second-boundary instant (2026-12-31T23:59:59Z →
     2027-01-01T00:00:00Z) without throwing or producing `NaN`.
   - `npm test` and `npm run lint` both exit 0 in CI on every push.
