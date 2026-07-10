@@ -247,6 +247,102 @@ h1 {
   margin-bottom: 0;
 }
 
+.countdown-odds-panel {
+  margin-top: var(--space-3);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.countdown-odds-panel h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-top: 0;
+}
+
+.countdown .clock-value {
+  font-size: 2.25rem;
+  margin: var(--space-2) 0;
+}
+
+.countdown__decided {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.odds__asof {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: -8px;
+}
+
+.odds__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.odds__item {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-2);
+}
+
+.odds__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.odds__label {
+  font-weight: 600;
+}
+
+.odds__prob {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-support);
+}
+
+.odds__track {
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  height: 6px;
+  margin: 6px 0;
+  overflow: hidden;
+}
+
+.odds__track-fill {
+  background: var(--accent-support);
+  height: 100%;
+  transition: width 200ms ease-out;
+}
+
+.odds__reasoning {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.odds__total {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.odds__citation {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+@media (min-width: 768px) {
+  .countdown-odds-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (min-width: 1024px) {
   .clocks-grid {
     grid-template-columns: repeat(3, 1fr);
