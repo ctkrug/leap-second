@@ -82,9 +82,9 @@ criteria — no "works well" vibes checks.
 ## Epic 4 — Ship & deploy
 
 - [x] **4.1 — Production build verified deployable to a subpath**
-  - `dist/index.html`'s asset URLs are all relative (no leading `/`).
-  - Serving `dist/` from a non-root path (e.g. `npx serve dist --single -l 5000` behind a
-    reverse-proxy prefix, or opening `dist/index.html` directly) shows no absolute-path 404s
+  - `site/index.html`'s asset URLs are all relative (no leading `/`).
+  - Serving `site/` from a non-root path (e.g. `npx serve site --single -l 5000` behind a
+    reverse-proxy prefix, or opening `site/index.html` directly) shows no absolute-path 404s
     in the console.
 
 - [ ] **4.2 — Launch-ready README**

@@ -77,5 +77,5 @@ npm run dev       # local dev server
 npm test          # vitest run
 npm run coverage  # vitest run --coverage, full src/ report (v8, html + text)
 npm run lint      # eslint .
-npm run build     # production build into dist/, base-path-relative for subpath hosting
+npm run build     # production build into site/, base-path-relative for subpath hosting
 ```

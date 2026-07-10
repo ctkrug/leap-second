@@ -5,7 +5,9 @@ export default defineConfig({
   // (e.g. apps.charliekrug.com/leap-second) without rewriting asset URLs.
   base: './',
   build: {
-    outDir: 'dist',
+    // Emit the production build into site/ — the committed static artifact the
+    // publisher serves from apps.charliekrug.com/leap-second/.
+    outDir: 'site',
   },
   test: {
     environment: 'node',

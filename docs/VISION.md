@@ -43,7 +43,7 @@ odds tracker that shows its reasoning, not just a percentage.
   pure functions over `Date` — no DOM, no timers — so the one part of this app that has to be
   _correct_ is also the easiest part to unit test in isolation.
 - **Static, single-directory build.** Vite with a relative base so the whole thing ships as
-  one `dist/` folder deployable under any subpath (`apps.charliekrug.com/leap-second`), no
+  one `site/` folder deployable under any subpath (`apps.charliekrug.com/leap-second`), no
   server required.
 
 ## What "v1 done" looks like
@@ -56,5 +56,5 @@ odds tracker that shows its reasoning, not just a percentage.
   who has never heard of any of the three.
 - The page is fully responsive (390/768/1440), keyboard-accessible, has a designed favicon
   and wordmark, and passes the design self-review in `docs/DESIGN.md`.
-- `npm run build` produces a self-contained `dist/` deployable to a subpath with no further
+- `npm run build` produces a self-contained `site/` deployable to a subpath with no further
   configuration.
