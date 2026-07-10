@@ -9,7 +9,10 @@
       content="When is the next leap second? Skew tracks the leap second 2026 decision with a live countdown and UTC, TAI and GPS clocks side by side."
     />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Skew — leap second 2026 countdown &amp; live UTC/TAI/GPS clocks" />
+    <meta
+      property="og:title"
+      content="Skew — leap second 2026 countdown &amp; live UTC/TAI/GPS clocks"
+    />
     <meta
       property="og:description"
       content="When is the next leap second? A live leap second 2026 countdown with UTC, TAI and GPS clocks ticking side by side, and the odds behind the decision."
@@ -25,6 +28,72 @@
   </head>
   <body>
     <div id="app"></div>
+
+    <section class="about" aria-labelledby="about-heading">
+      <div class="about__inner">
+        <h2 id="about-heading">When is the next leap second?</h2>
+        <p>
+          No leap second is currently scheduled. The last one was inserted at the end of 31 December
+          2016, and none has been needed since. The IERS (International Earth Rotation and Reference
+          Systems Service) decides twice a year, publishing the verdict in Bulletin C, whether to
+          add one at the end of the coming June or December. Skew counts down to the 31 December
+          2026 boundary, the next decision point, and tracks the running odds of each outcome with
+          the reasoning behind them.
+        </p>
+        <p>
+          Three clocks can all be right at once because they treat leap seconds differently. TAI
+          (International Atomic Time) never adds them, so the UTC to TAI offset has sat at a fixed
+          37 seconds since 2016. GPS time also skips leap seconds; it was aligned with UTC in 1980
+          and now runs 18 seconds ahead of it, exactly 19 seconds behind TAI. Skew draws all three
+          ticking side by side so the gap is something you watch rather than take on faith from a
+          table.
+        </p>
+
+        <h3 class="about__faq-heading">Leap second FAQ</h3>
+        <dl class="faq">
+          <dt>When is the next leap second?</dt>
+          <dd>
+            None is scheduled yet. The next opportunity is the end of December 2026, and IERS will
+            confirm or rule it out in Bulletin C. Every bulletin since 2016 has called for no leap
+            second, because Earth's rotation has been trending faster rather than slower.
+          </dd>
+
+          <dt>What is the UTC to TAI offset right now?</dt>
+          <dd>
+            37 seconds. TAI has been 37 seconds ahead of UTC since the last leap second at the end
+            of 2016, and that gap only moves when a new leap second is added or skipped. GPS time
+            sits 18 seconds ahead of UTC and 19 seconds behind TAI.
+          </dd>
+
+          <dt>What is the Skew leap second countdown counting down to?</dt>
+          <dd>
+            The last second of 31 December 2026 UTC, the next boundary at which a leap second could
+            be inserted or, for the first time ever, skipped. When the boundary passes, the page
+            switches to a decided state pointing you to Bulletin C for the confirmed outcome.
+          </dd>
+
+          <dt>Could the next leap second be negative?</dt>
+          <dd>
+            It is possible. Earth's rotation has sped up in recent years, so rather than adding a
+            second the world may eventually remove one, a negative leap second that has never
+            happened before. Skew's odds tracker gives that outcome a small but real probability for
+            2026, alongside the 2022 CGPM vote to retire leap seconds entirely by 2035.
+          </dd>
+        </dl>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <a class="site-footer__cta" href="https://github.com/ctkrug/leap-second">
+          View Skew on GitHub
+        </a>
+        <a class="site-footer__more" href="https://apps.charliekrug.com">
+          More by Charlie Krug &rarr; apps.charliekrug.com
+        </a>
+      </div>
+    </footer>
+
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>
