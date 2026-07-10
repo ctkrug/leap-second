@@ -52,6 +52,39 @@ describe('render — clock panels', () => {
 
     expect(panelBefore).toBe(panelAfter);
   });
+
+  it('renders an offset bar with an exact-seconds label for TAI and GPS, but not UTC', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+
+    expect(root.querySelector('[data-clock="utc"] [data-offset-bar]')).toBeNull();
+
+    const tai = root.querySelector('[data-clock="tai"] [data-offset-bar]');
+    const gps = root.querySelector('[data-clock="gps"] [data-offset-bar]');
+    expect(tai.getAttribute('aria-label')).toBe('TAI is 37 seconds ahead of UTC');
+    expect(gps.getAttribute('aria-label')).toBe('GPS is 18 seconds ahead of UTC');
+  });
+
+  it('scales the TAI and GPS offset bar fills proportionally to their offsets', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+
+    const taiFill = root.querySelector('[data-clock="tai"] .offset-bar__fill');
+    const gpsFill = root.querySelector('[data-clock="gps"] .offset-bar__fill');
+    expect(Number(taiFill.getAttribute('width'))).toBeGreaterThan(
+      Number(gpsFill.getAttribute('width'))
+    );
+    expect(Number(taiFill.getAttribute('width'))).toBe(100);
+  });
+
+  it('makes the offset bar focusable via keyboard', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+
+    expect(
+      root.querySelector('[data-clock="tai"] [data-offset-bar]').getAttribute('tabindex')
+    ).toBe('0');
+  });
 });
 
 describe('render — countdown', () => {
