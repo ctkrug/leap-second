@@ -89,6 +89,30 @@ function clockPanelMarkup(clock) {
   `;
 }
 
+function explainerMarkup() {
+  return `
+    <section class="explainer panel" aria-labelledby="explainer-heading">
+      <h2 id="explainer-heading">Why three clocks disagree</h2>
+      <p>
+        <strong>UTC</strong> (Coordinated Universal Time) is civil time &mdash; the one on every
+        phone and laptop. It stays within 0.9 seconds of Earth's actual rotation by occasionally
+        inserting a leap second, most recently at the end of 2016.
+      </p>
+      <p>
+        <strong>TAI</strong> (International Atomic Time) never applies leap seconds; it just
+        counts atomic seconds. Every leap second widens the TAI&ndash;UTC gap by exactly one
+        second, which is why TAI now sits ${TAI_UTC_OFFSET_SECONDS} seconds ahead of UTC.
+      </p>
+      <p>
+        <strong>GPS</strong> time also never applies leap seconds. It was locked to UTC at the
+        GPS epoch, 1980-01-06T00:00:00 UTC, and has drifted apart by one second per leap second
+        inserted since &mdash; ${GPS_UTC_OFFSET_SECONDS} seconds by now, and always exactly
+        19 seconds behind TAI by definition.
+      </p>
+    </section>
+  `;
+}
+
 function countdownMarkup() {
   return `
     <section class="panel" aria-label="countdown">
@@ -105,6 +129,7 @@ function mount(root) {
     <div class="clocks-grid">
       ${CLOCK_CONFIG.map(clockPanelMarkup).join('')}
     </div>
+    ${explainerMarkup()}
     ${countdownMarkup()}
   `;
   root.dataset.mounted = '1';
