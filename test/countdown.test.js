@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import fc from 'fast-check';
 import { timeRemaining, DECISION_INSTANT, ODDS } from '../src/countdown.js';
 
 describe('timeRemaining', () => {
@@ -63,6 +64,45 @@ describe('timeRemaining', () => {
       expect(Number.isNaN(result.minutes)).toBe(false);
       expect(Number.isNaN(result.seconds)).toBe(false);
     }
+  });
+});
+
+describe('timeRemaining — properties', () => {
+  const anyInstant = fc.date({
+    min: new Date('1970-01-01T00:00:00Z'),
+    max: new Date('2200-01-01T00:00:00Z'),
+    noInvalidDate: true,
+  });
+
+  it('agrees with isPast exactly when totalMs <= 0, for any two instants', () => {
+    fc.assert(
+      fc.property(anyInstant, anyInstant, (now, target) => {
+        const result = timeRemaining(now, target);
+        expect(result.totalMs).toBe(target.getTime() - now.getTime());
+        expect(result.isPast).toBe(result.totalMs <= 0);
+      }),
+    );
+  });
+
+  it('produces non-negative day/hour/minute/second parts that reconstruct the gap to the second', () => {
+    fc.assert(
+      fc.property(anyInstant, anyInstant, (now, target) => {
+        const result = timeRemaining(now, target);
+        expect(result.days).toBeGreaterThanOrEqual(0);
+        expect(result.hours).toBeGreaterThanOrEqual(0);
+        expect(result.hours).toBeLessThan(24);
+        expect(result.minutes).toBeGreaterThanOrEqual(0);
+        expect(result.minutes).toBeLessThan(60);
+        expect(result.seconds).toBeGreaterThanOrEqual(0);
+        expect(result.seconds).toBeLessThan(60);
+
+        const reconstructedMs =
+          ((result.days * 24 + result.hours) * 60 + result.minutes) * 60000 + result.seconds * 1000;
+        const absTotalMs = Math.abs(result.totalMs);
+        expect(reconstructedMs).toBeLessThanOrEqual(absTotalMs);
+        expect(absTotalMs - reconstructedMs).toBeLessThan(1000);
+      }),
+    );
   });
 });
 
