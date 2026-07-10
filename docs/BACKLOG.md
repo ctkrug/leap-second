@@ -5,7 +5,7 @@ criteria — no "works well" vibes checks.
 
 ## Epic 1 — Core clock comparison (the wow moment)
 
-- [ ] **1.1 — Three live SVG clock dials for UTC / TAI / GPS** *(wow moment — build first)*
+- [ ] **1.1 — Three live SVG clock dials for UTC / TAI / GPS** _(wow moment — build first)_
   - Loading the page shows three distinct dial readouts labeled UTC, TAI, and GPS, each
     updating every second with no page reload.
   - At any given tick, TAI's displayed value is exactly 37 seconds ahead of UTC's, and GPS's

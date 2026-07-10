@@ -12,7 +12,7 @@ engineering has ever seen that disagreement made visible.
 At the same time, there's a real, dated question in the world right now: will UTC gain
 another leap second at the end of December 2026? IERS decides and publishes this twice a
 year in Bulletin C, the 2022 CGPM resolution has already voted to retire leap seconds
-entirely by 2035, and Earth's accelerating rotation has made the *opposite* problem — a
+entirely by 2035, and Earth's accelerating rotation has made the _opposite_ problem — a
 never-before-issued negative leap second — a live topic. Nobody has built a page that treats
 this as the countdown it actually is.
 
@@ -41,7 +41,7 @@ odds tracker that shows its reasoning, not just a percentage.
   detail (`docs/DESIGN.md`) with real coordinates.
 - **Time math isolated from rendering.** `src/clocks.js` and `src/countdown.js` contain only
   pure functions over `Date` — no DOM, no timers — so the one part of this app that has to be
-  *correct* is also the easiest part to unit test in isolation.
+  _correct_ is also the easiest part to unit test in isolation.
 - **Static, single-directory build.** Vite with a relative base so the whole thing ships as
   one `dist/` folder deployable under any subpath (`apps.charliekrug.com/leap-second`), no
   server required.
@@ -52,7 +52,7 @@ odds tracker that shows its reasoning, not just a percentage.
   `docs/DESIGN.md`.
 - The countdown to the Dec 2026 boundary ticks live, and the odds tracker shows its outcome
   breakdown with reasoning, not a bare number.
-- A short explainer section makes the *why* (leap seconds, TAI, GPS epoch) legible to someone
+- A short explainer section makes the _why_ (leap seconds, TAI, GPS epoch) legible to someone
   who has never heard of any of the three.
 - The page is fully responsive (390/768/1440), keyboard-accessible, has a designed favicon
   and wordmark, and passes the design self-review in `docs/DESIGN.md`.

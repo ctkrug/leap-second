@@ -9,21 +9,21 @@ to tell you the truth about time.
 
 ## Tokens
 
-| Token | Value | Use |
-|---|---|---|
-| `--bg` | `#f2ede3` | page background — warm drafting paper |
-| `--surface-1` | `#ffffff` | primary panel surface (clock faces, cards) |
-| `--surface-2` | `#e9e2d1` | secondary/recessed surface (panel headers, track backgrounds) |
-| `--text` | `#16213a` | primary ink — deep navy, near-black |
-| `--text-muted` | `#5b6b82` | secondary ink — captions, labels, timestamps |
-| `--accent` | `#e2572b` | signal accent — the leap second itself, countdown emphasis |
-| `--accent-support` | `#2a5c8a` | support accent — TAI/GPS linework, secondary emphasis |
-| `--success` | `#2f855a` | positive/confirmed states |
-| `--danger` | `#c23b3b` | error states |
-| `--border` | `#16213a` at 15% opacity | hairline schematic borders |
+| Token              | Value                    | Use                                                           |
+| ------------------ | ------------------------ | ------------------------------------------------------------- |
+| `--bg`             | `#f2ede3`                | page background — warm drafting paper                         |
+| `--surface-1`      | `#ffffff`                | primary panel surface (clock faces, cards)                    |
+| `--surface-2`      | `#e9e2d1`                | secondary/recessed surface (panel headers, track backgrounds) |
+| `--text`           | `#16213a`                | primary ink — deep navy, near-black                           |
+| `--text-muted`     | `#5b6b82`                | secondary ink — captions, labels, timestamps                  |
+| `--accent`         | `#e2572b`                | signal accent — the leap second itself, countdown emphasis    |
+| `--accent-support` | `#2a5c8a`                | support accent — TAI/GPS linework, secondary emphasis         |
+| `--success`        | `#2f855a`                | positive/confirmed states                                     |
+| `--danger`         | `#c23b3b`                | error states                                                  |
+| `--border`         | `#16213a` at 15% opacity | hairline schematic borders                                    |
 
 **Type pairing:** [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) for
-the wordmark, headings, and all ticking digits (a monospace face reads as *instrumentation*,
+the wordmark, headings, and all ticking digits (a monospace face reads as _instrumentation_,
 and keeps digit columns from jittering as they tick); [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans)
 for body copy and labels. System fallback stack: `ui-monospace, "SF Mono", monospace` and
 `-apple-system, "Segoe UI", sans-serif` respectively.

@@ -4,7 +4,7 @@ A live, ticking comparison of the three time standards that quietly disagree wit
 other every day — UTC, TAI, and GPS time — paired with a real countdown and odds tracker
 for the December 2026 leap-second decision.
 
-**[Live demo →](https://apps.charliekrug.com/leap-second)** *(coming at ship time)*
+**[Live demo →](https://apps.charliekrug.com/leap-second)** _(coming at ship time)_
 
 ## Why
 
@@ -21,7 +21,7 @@ one uniform, ever-increasing counter. It isn't:
   **18 seconds ahead of UTC** (19 seconds behind TAI, by definition).
 
 Three clocks, three answers to "what time is it," all correct. Leap Second draws all
-three, ticking in real time, so the gap is something you *see* rather than something you
+three, ticking in real time, so the gap is something you _see_ rather than something you
 have to take on faith from a table.
 
 The second half of the page: whether the world adds another leap second at the end of
@@ -36,7 +36,7 @@ boundary and a running estimate of the odds, with the reasoning behind the numbe
   real time with the offsets clearly labeled.
 - A live countdown to the December 31, 2026 decision boundary.
 - An odds tracker with the reasoning/sources behind the estimate.
-- A short, legible explainer of *why* the three clocks disagree.
+- A short, legible explainer of _why_ the three clocks disagree.
 - Fully responsive, keyboard-accessible, and designed to be looked at (not just correct).
 
 ## Stack
