@@ -1,5 +1,5 @@
 import { currentClocks, TAI_UTC_OFFSET_SECONDS, GPS_UTC_OFFSET_SECONDS } from './clocks.js';
-import { timeRemaining, DECISION_INSTANT } from './countdown.js';
+import { timeRemaining, DECISION_INSTANT, ODDS } from './countdown.js';
 import { handAngles } from './dial.js';
 import { offsetBarWidthPercent } from './offset-bar.js';
 
@@ -113,14 +113,59 @@ function explainerMarkup() {
   `;
 }
 
+function formatAsOf(isoDate) {
+  const date = new Date(`${isoDate}T00:00:00Z`);
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function oddsListMarkup() {
+  return ODDS.outcomes
+    .map(
+      (outcome) => `
+        <li class="odds__item">
+          <div class="odds__row">
+            <span class="odds__label">${outcome.label}</span>
+            <span class="odds__prob">${Math.round(outcome.probability * 100)}%</span>
+          </div>
+          <div class="odds__track">
+            <div class="odds__track-fill" style="width: ${outcome.probability * 100}%"></div>
+          </div>
+          <p class="odds__reasoning">${outcome.reasoning}</p>
+        </li>
+      `
+    )
+    .join('');
+}
+
+function oddsMarkup() {
+  const totalPercent = Math.round(
+    ODDS.outcomes.reduce((sum, o) => sum + o.probability, 0) * 100
+  );
+  return `
+    <div class="odds">
+      <h2 id="odds-heading">Odds tracker</h2>
+      <p class="odds__asof">As of <time datetime="${ODDS.asOf}">${formatAsOf(ODDS.asOf)}</time></p>
+      <ul class="odds__list">${oddsListMarkup()}</ul>
+      <p class="odds__total">Total: ${totalPercent}%</p>
+      <p class="odds__citation">
+        Source: IERS Bulletin C and the 2022 CGPM (General Conference on Weights and Measures)
+        resolution on the future of UTC.
+      </p>
+    </div>
+  `;
+}
+
 function countdownMarkup() {
   return `
-    <section class="panel" aria-label="countdown">
-      <h2 id="countdown-heading">Countdown to the Dec 2026 decision boundary</h2>
-      <div class="clock-value" data-field="countdown-value"></div>
-      <p class="countdown__decided" data-field="decided" hidden aria-live="polite">
-        The decision boundary has passed &mdash; check IERS Bulletin C for the outcome.
-      </p>
+    <section class="countdown-odds-panel panel" aria-label="Countdown and odds tracker">
+      <div class="countdown">
+        <h2 id="countdown-heading">Countdown to the Dec 2026 decision boundary</h2>
+        <div class="clock-value" data-field="countdown-value"></div>
+        <p class="countdown__decided" data-field="decided" hidden aria-live="polite">
+          The decision boundary has passed &mdash; check IERS Bulletin C for the outcome.
+        </p>
+      </div>
+      ${oddsMarkup()}
     </section>
   `;
 }
