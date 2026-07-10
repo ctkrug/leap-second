@@ -260,6 +260,24 @@ describe('render — resilience to a corrupted DOM', () => {
       '00:01:00',
     );
   });
+
+  it('skips the readout/date fields rather than throwing if only they were removed', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+    root.querySelector('[data-clock="utc"] [data-field="readout"]').remove();
+    root.querySelector('[data-clock="utc"] [data-field="date"]').remove();
+
+    expect(() => render(root, new Date('2026-07-10T00:01:00Z'))).not.toThrow();
+  });
+
+  it('skips the countdown update rather than throwing if its fields were removed', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+    root.querySelector('[data-field="countdown-value"]').remove();
+    root.querySelector('[data-field="decided"]').remove();
+
+    expect(() => render(root, new Date('2026-07-10T00:01:00Z'))).not.toThrow();
+  });
 });
 
 describe('render — long-session stability', () => {
