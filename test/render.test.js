@@ -2,20 +2,65 @@
 import { describe, it, expect } from 'vitest';
 import { render } from '../src/render.js';
 
-describe('render', () => {
-  it('renders UTC, TAI, and GPS readouts into the root element', () => {
-    const root = document.createElement('div');
+function freshRoot() {
+  return document.createElement('div');
+}
+
+describe('render — clock panels', () => {
+  it('renders one panel per clock, each with an inline SVG dial', () => {
+    const root = freshRoot();
     render(root, new Date('2026-07-10T00:00:00Z'));
 
-    expect(root.textContent).toContain('UTC');
-    expect(root.textContent).toContain('TAI');
-    expect(root.textContent).toContain('GPS');
+    for (const key of ['utc', 'tai', 'gps']) {
+      const panel = root.querySelector(`[data-clock="${key}"]`);
+      expect(panel).not.toBeNull();
+      expect(panel.querySelector('svg.dial')).not.toBeNull();
+    }
   });
 
-  it('renders a countdown to the decision boundary', () => {
-    const root = document.createElement('div');
+  it('keeps TAI exactly 37s and GPS exactly 18s ahead of UTC in the digital readout', () => {
+    const root = freshRoot();
     render(root, new Date('2026-07-10T00:00:00Z'));
 
-    expect(root.textContent).toMatch(/\d+d \d{2}h \d{2}m \d{2}s/);
+    expect(root.querySelector('[data-clock="utc"] [data-field="readout"]').textContent).toBe(
+      '00:00:00'
+    );
+    expect(root.querySelector('[data-clock="tai"] [data-field="readout"]').textContent).toBe(
+      '00:00:37'
+    );
+    expect(root.querySelector('[data-clock="gps"] [data-field="readout"]').textContent).toBe(
+      '00:00:18'
+    );
+  });
+
+  it('re-renders the digital readout on a later call with the same root', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+    render(root, new Date('2026-07-10T00:01:00Z'));
+
+    expect(root.querySelector('[data-clock="utc"] [data-field="readout"]').textContent).toBe(
+      '00:01:00'
+    );
+  });
+
+  it('does not rebuild the DOM subtree on repeat renders, preserving element identity', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+    const panelBefore = root.querySelector('[data-clock="utc"]');
+    render(root, new Date('2026-07-10T00:00:01Z'));
+    const panelAfter = root.querySelector('[data-clock="utc"]');
+
+    expect(panelBefore).toBe(panelAfter);
+  });
+});
+
+describe('render — countdown', () => {
+  it('renders a countdown to the decision boundary', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+
+    expect(root.querySelector('[data-field="countdown-value"]').textContent).toMatch(
+      /\d+d \d{2}h \d{2}m \d{2}s/
+    );
   });
 });
