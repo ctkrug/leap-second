@@ -87,6 +87,19 @@ describe('render — clock panels', () => {
   });
 });
 
+describe('render — explainer', () => {
+  it('has a real, reachable heading and mentions the 2016 leap second and 1980 GPS epoch', () => {
+    const root = freshRoot();
+    render(root, new Date('2026-07-10T00:00:00Z'));
+
+    const heading = root.querySelector('#explainer-heading');
+    expect(heading).not.toBeNull();
+    expect(heading.tagName).toBe('H2');
+    expect(root.textContent).toContain('2016');
+    expect(root.textContent).toContain('1980-01-06');
+  });
+});
+
 describe('render — countdown', () => {
   it('renders a countdown to the decision boundary', () => {
     const root = freshRoot();
