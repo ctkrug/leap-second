@@ -24,7 +24,7 @@ criteria — no "works well" vibes checks.
   - The section uses a real heading (not a styled `div`) and is reachable by keyboard/screen
     reader.
 
-- [ ] **1.4 — Design polish pass: clock panels**
+- [x] **1.4 — Design polish pass: clock panels**
   - Clock panels' colors, fonts, spacing, radius, and shadow match the tokens in
     `docs/DESIGN.md` (verified via computed styles, not eyeballing).
   - The three clock panels together fill at least 60% of viewport height at 1440×900.
@@ -48,7 +48,7 @@ criteria — no "works well" vibes checks.
     estimate.
   - The estimate's "as of" date is visible on the page.
 
-- [ ] **2.4 — Design polish pass: countdown/odds panel**
+- [x] **2.4 — Design polish pass: countdown/odds panel**
   - The countdown/odds panel spans the full content width beneath the clocks at 1440px, with
     no dead margins, per `docs/DESIGN.md`'s layout intent.
   - Countdown digits use the display font with tabular/monospace alignment so they don't
